@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitación EPEF N°8 – Espacios Confinados | Mantoverde</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f0ede8;color:#1c1c1c}
+  header{background:#CC4E10;color:#fff;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  header h1{font-size:1.05rem;font-weight:600;letter-spacing:.5px}
+  header span{font-size:.8rem;opacity:.85}
+  .hero{background:#1c1c1c;color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
+  .hero .badge{display:inline-block;background:rgba(204,78,16,.25);border:1px solid #CC4E10;color:#ffb38a;font-size:.75rem;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:1rem}
+  .hero h2{font-size:2.6rem;font-weight:700;line-height:1.15}
+  .hero h2 span{color:#CC4E10}
+  .hero p{margin-top:.75rem;color:#aaa;font-size:1rem}
+  .hero-meta{margin-top:1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+  .hero-meta .num{font-size:2rem;font-weight:700;color:#CC4E10}
+  .hero-meta .lbl{font-size:.75rem;color:#888;margin-top:2px}
+  nav.tabs{background:#fff;border-bottom:2px solid #e8e4de;display:flex;overflow-x:auto;position:sticky;top:57px;z-index:99}
+  nav.tabs button{flex-shrink:0;background:none;border:none;padding:.85rem 1.4rem;font-size:.88rem;cursor:pointer;color:#6b6b6b;font-weight:500;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap}
+  nav.tabs button.active{color:#CC4E10;border-bottom-color:#CC4E10}
+  nav.tabs button:hover:not(.active){color:#1c1c1c;background:#faf8f5}
+  .section{display:none;max-width:960px;margin:2rem auto;padding:0 1.5rem 4rem}
+  .section.show{display:block}
+  .card{background:#fff;border-radius:12px;border:1px solid #e8e4de;margin-bottom:1.25rem;overflow:hidden}
+  .card-header{background:#1c1c1c;color:#fff;padding:.75rem 1.25rem;font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:.75rem}
+  .card-header .dot{width:10px;height:10px;border-radius:50%;background:#CC4E10;flex-shrink:0}
+  .card-body{padding:1.25rem}
+  .card-body p,.card-body li{font-size:.92rem;line-height:1.65;color:#333}
+  .card-body ul{padding-left:1.3rem}
+  .card-body li{margin-bottom:.35rem}
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.25rem}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.25rem}
+  .info-box{background:#fff;border:1px solid #e8e4de;border-radius:12px;overflow:hidden}
+  .info-box .ib-top{background:#CC4E10;height:5px}
+  .info-box .ib-body{padding:1.1rem}
+  .info-box .ib-icon{width:40px;height:40px;border-radius:10px;background:#faece7;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:.75rem}
+  .info-box h4{font-size:.92rem;font-weight:600;color:#1c1c1c;margin-bottom:.5rem}
+  .info-box p{font-size:.85rem;color:#6b6b6b;line-height:1.55}
+  .rule-row{display:flex;align-items:stretch;margin-bottom:.5rem;border-radius:8px;overflow:hidden;border:1px solid #e8e4de}
+  .rule-row .rr-label{background:#CC4E10;color:#fff;font-size:.82rem;font-weight:600;padding:.65rem .9rem;min-width:170px;display:flex;align-items:center}
+  .rule-row .rr-val{background:#fff;padding:.65rem .9rem;font-size:.85rem;color:#333;display:flex;align-items:center;flex:1;flex-wrap:wrap;gap:4px}
+  .alert{background:#fff3ed;border-left:4px solid #CC4E10;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:1rem;font-size:.9rem;color:#7a2800}
+  .danger{background:#fcebeb;border-left:4px solid #c0392b;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#7b1f1f}
+  .ok-box{background:#eaf3de;border-left:4px solid #1e7b34;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#1e4a24}
+  .info-bar{background:#e6f1fb;border-left:4px solid #185fa5;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#0c447c}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+  @media(max-width:640px){.two-col{grid-template-columns:1fr}}
+  .tag{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:20px;margin:2px}
+  .tag.red{background:#fcebeb;color:#a32d2d}
+  .tag.green{background:#eaf3de;color:#1e7b34}
+  .tag.blue{background:#e6f1fb;color:#185fa5}
+  .tag.amber{background:#faeeda;color:#854f0b}
+  /* Clases EC */
+  .clase-item{border-radius:8px;padding:.75rem 1rem;margin-bottom:.5rem;font-size:.88rem}
+  /* QUIZ */
+  .q-num{font-size:.8rem;color:#aaa;margin-bottom:.35rem}
+  .q-text{font-size:1rem;font-weight:600;color:#1c1c1c;margin-bottom:1rem}
+  .opt{background:#f5f3ef;border:1px solid #e8e4de;border-radius:8px;padding:.75rem 1rem;margin-bottom:.6rem;cursor:pointer;font-size:.9rem;color:#1c1c1c;transition:all .12s}
+  .opt:hover{background:#faece7;border-color:#CC4E10}
+  .opt.correct{background:#eaf3de;border-color:#1e7b34;color:#1e4a24}
+  .opt.wrong{background:#fcebeb;border-color:#c0392b;color:#7b1f1f}
+  .feedback{font-size:.85rem;margin-top:.75rem;padding:.75rem 1rem;border-radius:8px;display:none}
+  .feedback.ok-f{background:#eaf3de;color:#1e4a24}
+  .feedback.err-f{background:#fcebeb;color:#7b1f1f}
+  .progress-wrap{background:#e8e4de;border-radius:4px;height:5px;margin-bottom:1.25rem;overflow:hidden}
+  .progress-fill{height:100%;background:#CC4E10;transition:width .3s;border-radius:4px}
+  #next-btn{display:none;background:#CC4E10;color:#fff;border:none;border-radius:8px;padding:.6rem 1.4rem;font-size:.9rem;cursor:pointer;margin-top:.75rem}
+  .score-wrap{text-align:center;padding:2rem}
+  .score-wrap .score-icon{font-size:3rem;margin-bottom:.75rem}
+  .score-wrap h3{font-size:1.5rem;font-weight:700}
+  .score-wrap p{margin-top:.5rem}
+  #restart-btn{background:#CC4E10;color:#fff;border:none;border-radius:8px;padding:.65rem 1.6rem;font-size:.9rem;cursor:pointer;margin-top:.75rem}
+  .name-form{margin-bottom:1.5rem}
+  .name-form label{display:block;font-size:.85rem;color:#6b6b6b;margin-bottom:.4rem;font-weight:500}
+  .name-form input{width:100%;max-width:400px;padding:.65rem 1rem;border:1.5px solid #e8e4de;border-radius:8px;font-size:.95rem;font-family:'Segoe UI',Arial,sans-serif;outline:none;transition:border .15s}
+  .name-form input:focus{border-color:#CC4E10}
+  #cert-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;padding:1rem}
+  #cert-overlay.show{display:flex}
+  #cert-box{background:#fff;border-radius:16px;max-width:680px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .cert-top{background:#1c1c1c;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  .cert-top span{color:#CC4E10;font-weight:700;letter-spacing:1.5px;font-size:.8rem}
+  .cert-top button{background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer}
+  .cert-body{padding:2rem 2.5rem;text-align:center}
+  .cert-seal{width:80px;height:80px;border-radius:50%;background:#1c1c1c;border:4px solid #CC4E10;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.25rem}
+  .cert-name{font-size:1.5rem;color:#CC4E10;font-weight:700;border-bottom:2px solid #CC4E10;display:inline-block;padding-bottom:4px;margin:1rem 0 .5rem}
+  .cert-meta{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+  .cert-meta .cm-val{font-size:1.1rem;font-weight:700;color:#1c1c1c}
+  .cert-meta .cm-lbl{font-size:.75rem;color:#999;margin-top:2px}
+  .cert-divider{border:none;border-top:1px dashed #e8e4de;margin:1.25rem 0}
+  .cert-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+  .cert-actions button{padding:.6rem 1.4rem;border-radius:8px;font-size:.88rem;cursor:pointer;font-family:'Segoe UI',Arial,sans-serif}
+  .btn-print{background:#CC4E10;color:#fff;border:none}
+  .btn-close{background:#fff;color:#1c1c1c;border:1.5px solid #e8e4de}
+  @media print{
+    body>*:not(#cert-overlay){display:none!important}
+    #cert-overlay{display:flex!important;position:static;background:none;padding:0}
+    #cert-box{box-shadow:none;border-radius:0;max-width:100%}
+    .cert-top button,.cert-actions{display:none!important}
+    .cert-top{background:#1c1c1c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .cert-seal{background:#1c1c1c!important;border-color:#CC4E10!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  footer{background:#1c1c1c;color:#888;text-align:center;padding:1.5rem;font-size:.8rem}
+  footer strong{color:#CC4E10}
+  footer .footer-sub{margin-top:.4rem;font-size:.75rem;color:#666;font-style:italic}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⛏ Capstone Copper · Mantoverde — EPEF N°8 Espacios Confinados</h1>
+  <span>CC.MV.GSSO.E008 · v0 · 01/12/2023</span>
+</header>
+
+<div class="hero">
+  <div class="badge">ESTÁNDAR PARA LA ELIMINACIÓN DE FATALIDADES</div>
+  <h2>Espacios <span>Confinados</span></h2>
+  <p>Capacitación simplificada para todo el personal y contratistas de Mantoverde</p>
+  <div class="hero-meta">
+    <div><div class="num">19,5%</div><div class="lbl">O₂ mínimo para ingresar</div></div>
+    <div><div class="num">&lt;10%</div><div class="lbl">LEL máximo permitido</div></div>
+    <div><div class="num">2</div><div class="lbl">personas mínimo en el equipo exterior</div></div>
+    <div><div class="num">100%</div><div class="lbl">requerido para aprobar esta evaluación</div></div>
+  </div>
+</div>
+
+<nav class="tabs">
+  <button class="active" onclick="show('intro')">📋 Introducción</button>
+  <button onclick="show('atmosfera')">🌬 Atmósfera y Gases</button>
+  <button onclick="show('ingreso')">🚪 Permisos e Ingreso</button>
+  <button onclick="show('roles')">👷 Roles y EPP</button>
+  <button onclick="show('quiz')">✅ Evaluación</button>
+</nav>
+
+<!-- INTRO -->
+<div id="s-intro" class="section show">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>¿Qué es un Espacio Confinado?</div>
+    <div class="card-body">
+      <p>Es un espacio que por su diseño tiene un número <strong>limitado de aberturas de entrada y salida</strong>, con ventilación natural desfavorable, que podría contener o generar altas concentraciones de contaminantes, y que <strong>no está destinado para la presencia continua de trabajadores</strong>.</p>
+      <br>
+      <p>Ejemplos en Mantoverde: estanques, tanques, cubas, silos, depósitos, tuberías de gran diámetro, pozos, cámaras subterráneas, calderas.</p>
+      <div class="alert" style="margin-top:.85rem;margin-bottom:0">
+        <strong>Regla de Vida N°3:</strong> "Nunca ingrese a un Espacio Confinado sin seguir el procedimiento específico de la actividad."
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Clasificación de Espacios Confinados</div>
+    <div class="card-body">
+      <div class="clase-item" style="background:#fcebeb;border-left:4px solid #c0392b">
+        <strong style="color:#a32d2d">🔴 CLASE A — Peligro inmediato para la vida</strong>
+        <p style="margin-top:.35rem;color:#555">Generalmente riesgos atmosféricos: gases tóxicos y/o deficiencia de oxígeno. Requiere máximas precauciones.</p>
+      </div>
+      <div class="clase-item" style="background:#faeeda;border-left:4px solid #e67e22">
+        <strong style="color:#854f0b">🟡 CLASE B — Peligro potencial</strong>
+        <p style="margin-top:.35rem;color:#555">Puede ocasionar daño si no se toman medidas preventivas, pero no es inmediatamente peligroso para la vida.</p>
+      </div>
+      <div class="clase-item" style="background:#eaf3de;border-left:4px solid #1e7b34">
+        <strong style="color:#1e4a24">🟢 CLASE C — Peligro mínimo</strong>
+        <p style="margin-top:.35rem;color:#555">El peligro potencial no requiere modificación especial al procedimiento normal de trabajo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Principales actividades en Espacios Confinados</div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🔧</div><h4>Mantenimiento</h4><p>Inspección y reparación de instalaciones y equipos al interior.</p></div></div>
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🧹</div><h4>Limpieza</h4><p>Limpieza, aseo y vaciado de tanques, estanques y cubas.</p></div></div>
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🎨</div><h4>Pintura e Inspección</h4><p>Trabajos de pintura, inspección visual y medición al interior.</p></div></div>
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🏗</div><h4>Construcción</h4><p>Trabajos de edificación o modificación estructural en recintos confinados.</p></div></div>
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🚒</div><h4>Rescate</h4><p>Operaciones de rescate de personas realizadas por la Brigada de Emergencia.</p></div></div>
+        <div class="info-box"><div class="ib-top"></div><div class="ib-body"><div class="ib-icon">🔥</div><h4>Reparaciones</h4><p>Trabajos en caliente, soldadura y cortes al interior de espacios.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Riesgos principales en Espacios Confinados</div>
+    <div class="card-body">
+      <div class="two-col">
+        <div>
+          <p style="font-weight:600;margin-bottom:.6rem">Riesgos atmosféricos:</p>
+          <div class="danger">🚫 Deficiencia de oxígeno (&lt;19,5%)</div>
+          <div class="danger">🚫 Enriquecimiento de oxígeno (&gt;23,5%)</div>
+          <div class="danger">🚫 Gases inflamables o explosivos</div>
+          <div class="danger">🚫 Gases tóxicos (CO, H₂S, SO₂, Cl₂)</div>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.6rem">Otros riesgos:</p>
+          <div class="danger">🚫 Enterramiento por materiales sólidos</div>
+          <div class="danger">🚫 Riesgos físicos (agitadores, engranajes)</div>
+          <div class="danger">🚫 Visibilidad e iluminación deficiente</div>
+          <div class="danger">🚫 Riesgos biológicos (hongos, bacterias)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ATMOSFERA -->
+<div id="s-atmosfera" class="section">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Parámetros aceptables para el ingreso</div>
+    <div class="card-body">
+      <p style="margin-bottom:.85rem">Antes de que cualquier persona ingrese, la atmósfera debe ser medida por personal competente con instrumentos de lectura directa, en el siguiente orden:</p>
+      <div class="rule-row"><div class="rr-label">Oxígeno (O₂)</div><div class="rr-val"><strong>19,5% &lt; O₂ &lt; 23,5%</strong></div></div>
+      <div class="rule-row"><div class="rr-label">Gases inflamables</div><div class="rr-val"><strong>&lt; 10% del LEL</strong></div></div>
+      <div class="rule-row"><div class="rr-label">Gases tóxicos conocidos</div><div class="rr-val"><strong>&lt; PEL</strong> (Límite de Exposición Permisible)</div></div>
+      <div class="rule-row"><div class="rr-label">Contaminantes desconocidos</div><div class="rr-val"><strong>&lt; 1 ppm</strong></div></div>
+      <div class="rule-row"><div class="rr-label">Peligros radiológicos</div><div class="rr-val"><strong>&lt; 10% del DAC</strong></div></div>
+      <div class="alert" style="margin-top:.75rem;margin-bottom:0">Las mediciones deben comenzar con el sistema de ventilación <strong>detenido</strong>, desde el exterior, iniciando por la boca de ingreso y continuando por el interior: parte superior, media e inferior.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Efectos del oxígeno sobre el ser humano</div>
+    <div class="card-body">
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">23,5% O₂</div><div class="rr-val"><span class="tag red">Peligro de incendio</span> Enriquecimiento — atmósfera con riesgo alto de ignición</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">21,0% O₂</div><div class="rr-val"><span class="tag green">Normal</span> Concentración normal en el aire</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">19,5% O₂</div><div class="rr-val"><span class="tag amber">Límite mínimo</span> Concentración inocua mínima aceptable</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">16,0% O₂</div><div class="rr-val"><span class="tag red">Peligro</span> Desorientación, juicio y respiración afectados</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">14,0% O₂</div><div class="rr-val"><span class="tag red">Peligro grave</span> Juicio defectuoso, fatiga rápida</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">8,0% O₂</div><div class="rr-val"><span class="tag red">Crítico</span> Fallo mental, pérdida del sentido</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:120px">6,0% O₂</div><div class="rr-val"><span class="tag red">Mortal</span> Dificultad para respirar, riesgo de muerte</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Efectos del Monóxido de Carbono (CO)</div>
+    <div class="card-body">
+      <p style="margin-bottom:.75rem;font-size:.88rem;color:#555">El CO es incoloro e inodoro. Se genera por combustión y puede acumularse por trabajos de soldadura al interior.</p>
+      <div class="rule-row"><div class="rr-label" style="min-width:160px">200 ppm / 3 horas</div><div class="rr-val">Dolor de cabeza</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:160px">500 ppm / 30 min</div><div class="rr-val">Esfuerzo del corazón, dolor de cabeza, náuseas, zumbido en oídos</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:160px">1.000 ppm / 1 hora</div><div class="rr-val"><span class="tag red">Peligro grave</span> Síntomas intensos, riesgo vital</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:160px">1.500 ppm / 1 hora</div><div class="rr-val"><span class="tag red">Peligro para la vida</span></div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:160px">4.000 ppm</div><div class="rr-val"><span class="tag red">Mortal</span> Colapso, inconsciencia y muerte en pocos minutos</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Ventilación del Espacio Confinado</div>
+    <div class="card-body">
+      <div class="ok-box">✅ Favorecer siempre al máximo la <strong>ventilación natural</strong> antes de ingresar.</div>
+      <div class="ok-box">✅ Si la natural es insuficiente, usar <strong>ventilación forzada</strong> (por dilución o localizada).</div>
+      <div class="ok-box">✅ La ventilación debe continuar mientras los trabajadores estén adentro.</div>
+      <div class="ok-box">✅ Monitorear continuamente la atmósfera durante la operación.</div>
+      <div class="danger">🚫 <strong>Nunca ventilar con oxígeno puro</strong> — riesgo de incendio.</div>
+      <div class="danger">🚫 Si se usa compresor de motor térmico, verificar que el aire de ingreso no esté contaminado por los gases de escape.</div>
+      <div class="alert" style="margin-bottom:0"><strong>Ventilación mínima previa:</strong> Al menos <strong>30 minutos</strong> antes de ingresar (según Permiso de Entrada).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>¿Qué hacer si se detecta atmósfera peligrosa después del ingreso?</div>
+    <div class="card-body">
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 1</div><div class="rr-val"><strong>Ayudante:</strong> Ordenar la evacuación inmediata del espacio.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 2</div><div class="rr-val"><strong>Ayudante:</strong> Contar a todas las personas que estaban adentro.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 3</div><div class="rr-val"><strong>Ayudante:</strong> Impedir que alguien vuelva a entrar hasta completar pasos 4 y 5.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 4</div><div class="rr-val"><strong>Supervisores:</strong> Evaluar el espacio para determinar cómo se desarrolló la atmósfera peligrosa.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 5</div><div class="rr-val"><strong>Supervisores:</strong> Implementar controles de ingeniería para dejar la atmósfera en parámetros aceptables.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:80px">Paso 6</div><div class="rr-val"><strong>Supervisores:</strong> Documentar el hecho en el permiso de ingreso.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- INGRESO -->
+<div id="s-ingreso" class="section">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Requisitos previos al ingreso</div>
+    <div class="card-body">
+      <div class="danger">🚫 <strong>Nadie</strong> puede ingresar a un Espacio Confinado a menos que se hayan ejecutado todas las actividades indicadas en este estándar.</div>
+      <br>
+      <p style="margin-bottom:.75rem">El plan de trabajo debe contemplar los siguientes acápites antes del ingreso:</p>
+      <div class="grid-2">
+        <div>
+          <div class="ok-box">✅ Capacitación del personal</div>
+          <div class="ok-box">✅ Permiso de Entrada completado y firmado</div>
+          <div class="ok-box">✅ Medición y evaluación de la atmósfera</div>
+          <div class="ok-box">✅ Ventilación establecida (mínimo 30 min)</div>
+          <div class="ok-box">✅ EPP definido y disponible</div>
+        </div>
+        <div>
+          <div class="ok-box">✅ Equipo humano de apoyo en exterior</div>
+          <div class="ok-box">✅ Herramientas y equipos preparados</div>
+          <div class="ok-box">✅ Plan de emergencia y rescate listo</div>
+          <div class="ok-box">✅ Control de salud acreditado</div>
+          <div class="ok-box">✅ Espacio confinado asegurado (bloqueo LOTO)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Permiso de Entrada a Espacio Confinado</div>
+    <div class="card-body">
+      <div class="rule-row"><div class="rr-label">¿Quién lo inicia?</div><div class="rr-val">Cualquier persona responsable del trabajo que requiere ingreso.</div></div>
+      <div class="rule-row"><div class="rr-label">¿Quién lo firma?</div><div class="rr-val">El Supervisor Ejecutor del Trabajo y el Supervisor Responsable del Área. Solo ellos pueden autorizar el ingreso.</div></div>
+      <div class="rule-row"><div class="rr-label">¿Dónde se publica?</div><div class="rr-val">En el portal de entrada del Espacio Confinado, junto al Permiso de Trabajo (Anexo 1).</div></div>
+      <div class="rule-row"><div class="rr-label">Duración máxima</div><div class="rr-val">El tiempo requerido para completar la tarea asignada, o un <strong>turno diario</strong>, lo que termine primero.</div></div>
+      <div class="rule-row"><div class="rr-label">Cancelación</div><div class="rr-val">Si expira el tiempo, si la tarea termina, si surge una condición no permitida, o si hay emergencia.</div></div>
+      <div class="info-bar" style="margin-bottom:0">El permiso cancelado se archiva junto a una copia del Permiso de Trabajo. El Supervisor Responsable del Área mantiene el archivo.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Aseguramiento del Espacio Confinado (Bloqueo)</div>
+    <div class="card-body">
+      <div class="ok-box">✅ Bloquear (LOTO) todas las fuentes de energía desde su origen antes del ingreso.</div>
+      <div class="ok-box">✅ Desconectar, tapar o bloquear líneas que puedan conducir sustancias inflamables o peligrosas al espacio.</div>
+      <div class="ok-box">✅ Señalizar todas las fuentes de energía desconectadas para evitar reconexión accidental.</div>
+      <div class="ok-box">✅ Colocar letreros visibles en todos los accesos: <strong>"PELIGRO — ESPACIO CONFINADO — ENTRADA SOLO CON PERMISO"</strong></div>
+      <div class="ok-box">✅ Indicar en el espacio el rombo NFPA con niveles de inflamabilidad, salud y reactividad.</div>
+      <div class="alert" style="margin-bottom:0">Si el EC se encuentra en zona de tráfico vehicular, los trabajadores deben usar vestimenta con elementos reflectantes.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Equipos especiales para rescate sin ingreso</div>
+    <div class="card-body">
+      <p style="margin-bottom:.75rem">Deben estar disponibles antes de iniciar cualquier operación:</p>
+      <div class="ok-box">✅ Arnés de cuerpo completo con cuerda de recuperación enganchada en la argolla de espalda.</div>
+      <div class="ok-box">✅ Dispositivo mecánico de levantamiento (trípode) fuera del espacio, listo para actuar.</div>
+      <div class="ok-box">✅ La cuerda de recuperación se enganchará al dispositivo mecánico <strong>antes</strong> de que comience el ingreso.</div>
+      <div class="info-bar" style="margin-bottom:0">Para espacios verticales de más de 1,5 metros de profundidad, es obligatorio un dispositivo mecánico de rescate.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Trabajo en Caliente dentro de un Espacio Confinado</div>
+    <div class="card-body">
+      <div class="danger">🚫 No se introducirá ninguna fuente de ignición hasta verificar que no existe riesgo de atmósfera inflamable.</div>
+      <div class="ok-box">✅ Medir la atmósfera antes de introducir cualquier fuente de calor.</div>
+      <div class="ok-box">✅ Si se usan equipos que consumen oxígeno (sopletes, salamandras), asegurar ventilación de gases de escape.</div>
+      <div class="ok-box">✅ Usar iluminación LED (no generan calor).</div>
+      <div class="ok-box">✅ En atmósferas con riesgo de explosión, usar herramientas antiexplosivas y neumáticas en lo posible.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ROLES Y EPP -->
+<div id="s-roles" class="section">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Roles y responsabilidades</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">📋</div>
+            <h4>Supervisor Responsable del Área</h4>
+            <p>Identifica y señaliza los EC. Verifica condiciones de entrada. Autoriza el Permiso de Entrada. Cancela el permiso si las condiciones se vuelven inseguras.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🦺</div>
+            <h4>Supervisor Ejecutor del Trabajo</h4>
+            <p>Informa peligros al equipo. Asegura competencias del personal. Gestiona medición de atmósfera y Permiso de Entrada. Hace el AST. Bloquea energías. Entrega el trabajo.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">👷</div>
+            <h4>Trabajador Entrante</h4>
+            <p>Conoce los peligros del área y señales de exposición. Mantiene comunicación con el ayudante. Tiene salud compatible y está autorizado para entrar. Usa los EPP definidos.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">👁</div>
+            <h4>Ayudante (Vigía)</h4>
+            <p>Se mantiene en contacto con el entrante en todo momento. Controla el acceso. Ordena el desalojo si nota señales de exposición, si debe dejar su puesto, o si hay condición no permitida por el permiso.</p>
+          </div>
+        </div>
+      </div>
+      <div class="alert" style="margin-bottom:0">El Ayudante <strong>nunca</strong> puede ingresar al espacio para rescatar. Debe solicitar los servicios de rescate.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>EPP y Equipos de Protección Respiratoria</div>
+    <div class="card-body">
+      <p style="margin-bottom:.85rem">La selección del EPP depende de la clase del espacio confinado y los riesgos identificados:</p>
+      <div class="rule-row"><div class="rr-label" style="min-width:200px">EPP General</div><div class="rr-val">Casco con barbiquejo, guantes, calzado, protección ocular y auditiva, ropa según el riesgo.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:200px">EPR Dependiente del ambiente</div><div class="rr-val">Filtra contaminantes. Solo cuando O₂ es adecuado y los contaminantes son conocidos.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:200px">EPR Independiente del ambiente</div><div class="rr-val">Mayor protección. Circuito cerrado (2–4 h autonomía) o circuito abierto (manguera hasta 45 m).</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:200px">ERA (Equipo Autónomo)</div><div class="rr-val">Botella de aire comprimido. Presión positiva es el más seguro. Obligatorio si la atmósfera no es respirable.</div></div>
+      <div class="rule-row"><div class="rr-label" style="min-width:200px">Sistema de rescate</div><div class="rr-val">Arnés cuerpo completo + cuerda de recuperación + trípode externo. Siempre instalado antes de ingresar.</div></div>
+      <div class="info-bar" style="margin-top:.5rem;margin-bottom:0">Si el ingreso requiere ERA para tomar la muestra de atmósfera, debe haber un rescatador con protección similar disponible de inmediato.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Control de Salud</div>
+    <div class="card-body">
+      <div class="ok-box">✅ Batería de exámenes para Espacios Confinados, realizada en mutualidad o Centro Médico Autorizado.</div>
+      <div class="ok-box">✅ Monitoreo médico previo al ingreso en el Policlínico de Mantoverde.</div>
+      <div class="alert" style="margin-bottom:0">Los trabajadores deben ser compatibles física y mentalmente. Se deben descartar claustrofobia, vértigos, afecciones cardíacas, problemas neurológicos, movilidad reducida y capacidad respiratoria reducida.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Comunicaciones durante el trabajo</div>
+    <div class="card-body">
+      <div class="ok-box">✅ Debe existir un medio de comunicación efectivo y continuo entre el entrante y el Ayudante.</div>
+      <div class="ok-box">✅ Los equipos de comunicación deben ser intrínsecamente seguros (aptos para atmósferas explosivas).</div>
+      <div class="ok-box">✅ Debe existir un medio alternativo (señales de mano, silbidos, campanillas) en caso de falla.</div>
+      <div class="rule-row" style="margin-top:.75rem"><div class="rr-label">Canal Planta</div><div class="rr-val">Frecuencia radial <strong>1</strong></div></div>
+      <div class="rule-row"><div class="rr-label">Canal Interior Mina</div><div class="rr-val">Frecuencia radial <strong>4</strong></div></div>
+      <div class="danger" style="margin-bottom:0">🚫 Los teléfonos móviles pueden interferir con los equipos de medición de gases. Deben estar apagados durante el trabajo.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- QUIZ -->
+<div id="s-quiz" class="section">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Evaluación EPEF N°8 — Espacios Confinados</div>
+    <div class="card-body">
+      <div class="name-form">
+        <label for="user-name">Nombre completo del participante</label>
+        <input type="text" id="user-name" placeholder="Ej: Juan Pérez González">
+      </div>
+      <div class="progress-wrap"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+      <div id="quiz-wrap"><div id="q-body"></div></div>
+      <div id="score-wrap" style="display:none">
+        <div class="score-icon" id="score-icon"></div>
+        <h3 id="score-title"></h3>
+        <p id="score-sub"></p>
+        <div id="cert-btn-wrap" style="display:none;margin-top:1rem">
+          <button onclick="showCert()" style="background:#CC4E10;color:#fff;border:none;border-radius:8px;padding:.65rem 1.6rem;font-size:.9rem;cursor:pointer">🏆 Ver mi certificado</button>
+        </div>
+        <br>
+        <button id="restart-btn" onclick="restartQuiz()">🔄 Reiniciar evaluación</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Certificado -->
+<div id="cert-overlay">
+  <div id="cert-box">
+    <div class="cert-top">
+      <span>CAPSTONE COPPER · MANTOVERDE</span>
+      <button onclick="closeCert()">✕</button>
+    </div>
+    <div class="cert-body">
+      <div class="cert-seal">🔒</div>
+      <p style="font-size:.8rem;letter-spacing:2px;color:#888">CERTIFICADO DE CAPACITACIÓN</p>
+      <div class="cert-name" id="cert-name-display">—</div>
+      <p style="font-size:.9rem;color:#555">aprobó satisfactoriamente la capacitación</p>
+      <p style="font-size:1rem;font-weight:600;color:#1c1c1c;margin-top:.25rem">EPEF N°8 — Espacios Confinados</p>
+      <hr class="cert-divider">
+      <div class="cert-meta">
+        <div><div class="cm-val" id="cert-score">—</div><div class="cm-lbl">Puntaje obtenido</div></div>
+        <div><div class="cm-val" id="cert-date">—</div><div class="cm-lbl">Fecha</div></div>
+        <div><div class="cm-val">CC.MV.GSSO.E008</div><div class="cm-lbl">Estándar</div></div>
+      </div>
+      <div class="cert-actions">
+        <button class="btn-print" onclick="window.print()">🖨 Imprimir</button>
+        <button class="btn-close" onclick="closeCert()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Capstone Copper · Mantoverde</strong> — EPEF N°8 Espacios Confinados · CC.MV.GSSO.E008 · Versión 0 · Vigente desde 01/12/2023
+  <div class="footer-sub">Elaborado y aprobado por Gerencia Sulfuros – Mantoverde</div>
+</footer>
+
+<script>
+const questions = [
+  {
+    q:"¿Cuál es el rango de oxígeno aceptable para ingresar a un Espacio Confinado?",
+    opts:["Entre 16% y 25%","Entre 19,5% y 23,5%","Entre 18% y 21%","Sobre el 21%"],
+    c:1,
+    fb:"Correcto. El contenido de oxígeno debe estar entre 19,5% y 23,5%. Por debajo del 19,5% hay deficiencia de oxígeno y riesgo de asfixia. Por sobre el 23,5% hay enriquecimiento y peligro de incendio."
+  },
+  {
+    q:"¿Cuál es el límite máximo de gases inflamables permitido en la atmósfera de un Espacio Confinado antes de ingresar?",
+    opts:["25% del LEL","50% del LEL","10% del LEL","100% del LEL"],
+    c:2,
+    fb:"Correcto. La concentración de gases y vapores inflamables debe ser menor al 10% del LEL (Límite Inferior de Explosividad) para poder ingresar de forma segura."
+  },
+  {
+    q:"¿Quiénes son los únicos autorizados para firmar el Permiso de Entrada a Espacio Confinado?",
+    opts:["Cualquier supervisor presente en el área","El Gerente de Operaciones y el Prevencionista","El Supervisor Ejecutor del Trabajo y el Supervisor Responsable del Área","El trabajador entrante y el Ayudante"],
+    c:2,
+    fb:"Correcto. Solo el Supervisor Ejecutor del Trabajo y el Supervisor Responsable del Área identificados en el permiso están autorizados para firmarlo y autorizar el ingreso."
+  },
+  {
+    q:"¿Cuál es la clasificación de un Espacio Confinado con peligro inmediato para la vida por gases tóxicos o deficiencia de oxígeno?",
+    opts:["Clase C","Clase B","Clase A","Clase D"],
+    c:2,
+    fb:"Correcto. Clase A significa que existe un peligro inminente para la vida, generalmente por riesgos atmosféricos como gases tóxicos y/o deficiencia de oxígeno. Es la clasificación de mayor riesgo."
+  },
+  {
+    q:"¿Qué debe hacer el Ayudante si nota señales de exposición en los trabajadores al interior?",
+    opts:["Ingresar inmediatamente al espacio para ayudar","Llamar al supervisor y esperar instrucciones","Ordenar el desalojo inmediato y contar a todas las personas","Aumentar la ventilación y continuar monitoreando"],
+    c:2,
+    fb:"Correcto. El Ayudante debe ordenar la evacuación inmediata y contar a todas las personas que estaban adentro. El Ayudante NUNCA debe ingresar al espacio para rescatar; debe solicitar los servicios de rescate."
+  },
+  {
+    q:"¿Cuánto tiempo mínimo de ventilación debe aplicarse antes de ingresar a un Espacio Confinado?",
+    opts:["5 minutos","15 minutos","30 minutos","1 hora"],
+    c:2,
+    fb:"Correcto. Según el Permiso de Entrada, se deben realizar al menos 30 minutos de ventilación previa al ingreso para asegurar que la atmósfera esté dentro de parámetros aceptables."
+  },
+  {
+    q:"¿Por qué nunca se debe ventilar un Espacio Confinado con oxígeno puro?",
+    opts:["Porque el oxígeno es tóxico para los trabajadores","Porque puede generar riesgo muy alto de incendio al enriquecer la atmósfera","Porque el oxígeno puro no permite medir el LEL correctamente","Porque deteriora el equipo de medición de gases"],
+    c:1,
+    fb:"Correcto. El enriquecimiento de oxígeno por sobre el 23,5% crea una atmósfera con riesgo muy alto de incendio. Nunca se debe usar oxígeno puro para ventilar; siempre se usa aire limpio."
+  },
+  {
+    q:"¿Cuál es la duración máxima de un Permiso de Entrada a Espacio Confinado?",
+    opts:["48 horas desde su emisión","Una semana calendario","El tiempo requerido para la tarea o un turno diario, lo que termine primero","72 horas con posibilidad de extensión"],
+    c:2,
+    fb:"Correcto. La duración del permiso no puede exceder el tiempo requerido para completar la tarea asignada, o un turno diario, cualquiera que termine primero."
+  },
+  {
+    q:"¿Qué tipo de iluminación debe usarse dentro de un Espacio Confinado, especialmente en atmósferas con riesgo de explosión?",
+    opts:["Iluminación halógena de alta potencia","Iluminación fluorescente estándar","Iluminación LED (no genera calor)","Cualquier tipo de linterna disponible"],
+    c:2,
+    fb:"Correcto. Debe usarse iluminación LED porque no generan calor, reduciendo el riesgo de ignición en atmósferas potencialmente explosivas. Además, tanto la iluminación como las herramientas deben ser intrínsecamente seguras."
+  },
+  {
+    q:"¿Cuántas personas mínimo deben conformar el equipo de apoyo exterior mientras hay personal dentro del Espacio Confinado?",
+    opts:["1 persona (el Ayudante)","Al menos 2 personas capacitadas","3 personas: Ayudante, Supervisor y Médico","No hay requisito mínimo si el trabajo es corto"],
+    c:1,
+    fb:"Correcto. Mientras permanezca personal en el interior, es necesaria la presencia de un equipo de apoyo en el exterior conformado por al menos 2 personas con la capacitación necesaria para este cometido."
+  },
+  {
+    q:"¿Cuándo se realiza el control médico previo al ingreso a un Espacio Confinado en Mantoverde?",
+    opts:["Solo la primera vez que el trabajador ingresa a un EC en su vida","Una vez al año en cualquier centro médico","Un monitoreo médico de control previo se realiza en el Policlínico de Mantoverde antes de cada ingreso","Solo si el trabajador lo solicita"],
+    c:2,
+    fb:"Correcto. Además de la batería de exámenes realizados en mutualidad o Centro Médico Autorizado, se debe realizar un monitoreo médico de control previo en el Policlínico de Mantoverde antes de ingresar."
+  },
+  {
+    q:"¿En qué orden debe realizarse la medición de la atmósfera antes del ingreso?",
+    opts:["Primero gases tóxicos, luego oxígeno, luego explosividad","Primero explosividad, luego oxígeno, luego gases tóxicos","Primero oxígeno, luego gases inflamables, luego gases tóxicos","El orden no importa si se miden todos los parámetros"],
+    c:2,
+    fb:"Correcto. La medición debe realizarse en este orden específico: 1° Contenido de oxígeno, 2° Gases y vapores inflamables (LEL), 3° Gases y vapores tóxicos. Además se inicia con el sistema de ventilación detenido, comenzando por la boca de ingreso."
+  },
+];
+
+let cur=0, score=0, answered=false;
+
+function renderQ() {
+  const q = questions[cur];
+  document.getElementById('prog').style.width = (cur/questions.length*100)+'%';
+  let html = `<div class="q-num">Pregunta ${cur+1} de ${questions.length}</div><div class="q-text">${q.q}</div>`;
+  q.opts.forEach((o,i) => html += `<div class="opt" id="opt${i}" onclick="answer(${i})">${o}</div>`);
+  html += `<div class="feedback" id="fb"></div><button id="next-btn" onclick="nextQ()">${cur===questions.length-1?'Ver resultado':'Siguiente →'}</button>`;
+  document.getElementById('q-body').innerHTML = html;
+  answered = false;
+}
+
+function answer(i) {
+  if(answered) return;
+  answered = true;
+  const q = questions[cur];
+  document.querySelectorAll('.opt').forEach((el,idx) => {
+    el.style.cursor='default';
+    if(idx===q.c) el.classList.add('correct');
+    else if(idx===i&&i!==q.c) el.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb');
+  fb.textContent = q.fb;
+  fb.style.display='block';
+  fb.className='feedback '+(i===q.c?'ok-f':'err-f');
+  if(i===q.c) score++;
+  document.getElementById('next-btn').style.display='inline-block';
+}
+
+function nextQ() {
+  cur++;
+  if(cur>=questions.length) showResult();
+  else renderQ();
+}
+
+function showResult() {
+  document.getElementById('prog').style.width='100%';
+  document.getElementById('quiz-wrap').style.display='none';
+  const sw = document.getElementById('score-wrap');
+  sw.style.display='block';
+  const total = questions.length;
+  const approved = score===total;
+  document.getElementById('score-icon').textContent = approved?'🏆':'📖';
+  document.getElementById('score-title').textContent = score+' de '+total+' correctas ('+Math.round(score/total*100)+'%)';
+  if(approved){
+    document.getElementById('score-sub').textContent='¡Perfecto! Respondiste todo correcto. Ya puedes obtener tu certificado.';
+    document.getElementById('score-sub').style.color='#1e7b34';
+    document.getElementById('cert-btn-wrap').style.display='block';
+  } else {
+    const wrong=total-score;
+    document.getElementById('score-sub').textContent='Tuviste '+wrong+' error'+(wrong>1?'es':'')+'. Necesitas 100% para aprobar. Revisa el material e intenta de nuevo.';
+    document.getElementById('score-sub').style.color='#c0392b';
+    document.getElementById('cert-btn-wrap').style.display='none';
+  }
+}
+
+function showCert() {
+  const nombre = document.getElementById('user-name').value.trim()||'Participante';
+  const fecha = new Date().toLocaleDateString('es-CL',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('cert-name-display').textContent = nombre;
+  document.getElementById('cert-score').textContent = questions.length+'/'+questions.length;
+  document.getElementById('cert-date').textContent = fecha;
+  document.getElementById('cert-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeCert() {
+  document.getElementById('cert-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+function restartQuiz() {
+  cur=0; score=0; answered=false;
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('score-wrap').style.display='none';
+  renderQ();
+}
+
+function show(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-'+id).classList.add('show');
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  const idx=['intro','atmosfera','ingreso','roles','quiz'].indexOf(id);
+  document.querySelectorAll('nav.tabs button')[idx].classList.add('active');
+  if(id==='quiz'&&cur===0&&!answered) renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('cert-overlay').addEventListener('click',function(e){
+  if(e.target===this) closeCert();
+});
+</script>
+</body>
+</html>
